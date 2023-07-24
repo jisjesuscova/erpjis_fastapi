@@ -486,7 +486,7 @@ class Commune(BaseModel):
 class UpdateCommune(BaseModel):
     region_id: int = None
     commune: str = None
-    updated_date: str = None
+    updated_date: Union[datetime, None]
 
 class Health(BaseModel):
     health_remuneration_code: int

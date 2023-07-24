@@ -8,7 +8,7 @@ class CommuneClass:
         try:
             data = self.db.query(CommuneModel).order_by(CommuneModel.id).all()
             if not data:
-                return "No hay registros"
+                return "No data found"
             return data
         except Exception as e:
             error_message = str(e)
@@ -38,9 +38,9 @@ class CommuneClass:
             if data:
                 self.db.delete(data)
                 self.db.commit()
-                return "Registro eliminado"
+                return 1
             else:
-                return "No se encontró el registro"
+                return "No data found"
         except Exception as e:
             error_message = str(e)
             return f"Error: {error_message}"
@@ -49,7 +49,7 @@ class CommuneClass:
         existing_commune = self.db.query(CommuneModel).filter(CommuneModel.id == id).one_or_none()
 
         if not existing_commune:
-            return "No se encontró el registro"
+            return "No data founnd"
 
         existing_commune_data = commune.dict(exclude_unset=True)
         for key, value in existing_commune_data.items():
@@ -57,4 +57,4 @@ class CommuneClass:
 
         self.db.commit()
 
-        return "Registro actualizado"
+        return 1

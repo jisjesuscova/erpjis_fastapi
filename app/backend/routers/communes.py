@@ -11,32 +11,32 @@ communes = APIRouter(
 )
 
 @communes.get("/")
-def index(db: Session = Depends(get_db)):
+def index(session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
     data = CommuneClass(db).get_all()
 
     return {"message": data}
 
 @communes.post("/store")
-def store(commune:Commune, user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
+def store(commune:Commune, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
     commune_inputs = commune.dict()
     data = CommuneClass(db).store(commune_inputs)
 
     return {"message": data}
 
 @communes.get("/edit/{id}")
-def edit(id:int, db: Session = Depends(get_db)):
+def edit(id:int, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
     data = CommuneClass(db).get("id", id)
 
     return {"message": data}
 
 @communes.delete("/delete/{id}")
-def delete(id:int, db: Session = Depends(get_db)):
+def delete(id:int, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
     data = CommuneClass(db).delete(id)
 
     return {"message": data}
 
 @communes.patch("/update/{id}")
-def update(id: int, commune: UpdateCommune, db: Session = Depends(get_db)):
+def update(id: int, commune: UpdateCommune, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
     data = CommuneClass(db).update(id, commune)
 
     return {"message": data}
