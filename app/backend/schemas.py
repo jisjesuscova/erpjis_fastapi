@@ -357,30 +357,30 @@ class UpdateFamilyType(BaseModel):
     updated_date: str = None
 
 class FamilyCoreDatum(BaseModel):
-    id: int
     family_type_id: int
     rut_user: int
     gender_id: int
-    rut: int
+    rut: str
     names: str
     father_lastname: str
     mother_lastname: str
     born_date: str
-    support: str
-    added_date: str
-    updated_date: str
+    support: UploadFile
+    added_date: datetime
+    updated_date: Union[datetime, None]
 
 class UpdateFamilyCoreDatum(BaseModel):
-    family_type_id: int
-    rut_user: int
-    gender_id: int
-    rut: int
-    names: str
-    father_lastname: str
-    mother_lastname: str
-    born_date: str
-    support: str
-    updated_date: str = None
+    family_type_id: int = None
+    rut_user: int = None
+    gender_id: int = None
+    rut: str = None
+    rut_user: int = None
+    names: str = None
+    father_lastname: str = None
+    mother_lastname: str = None
+    born_date: str = None
+    support: UploadFile = None
+    updated_date: Union[datetime, None]
 
 class Vacation(BaseModel):
     id: int
