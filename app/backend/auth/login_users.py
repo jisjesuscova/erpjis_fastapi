@@ -27,7 +27,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     }
 
 @login_users.post("/logout")
-def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+def logout(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     user = AuthenticationClass(db).authenticate_user(form_data.username, form_data.password)
     access_token_expires = timedelta(minutes=30)
     access_token_jwt = AuthenticationClass(db).create_token({'sub': str(user.rut)}, access_token_expires)

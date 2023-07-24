@@ -402,7 +402,6 @@ class UpdateVacation(BaseModel):
     updated_date: str = None
 
 class MedicalLicense(BaseModel):
-    id: int
     document_employee_id: int
     medical_license_type_id: int
     patology_type_id: int
@@ -412,8 +411,8 @@ class MedicalLicense(BaseModel):
     since: str
     until: str
     days: int
-    added_date: str
-    updated_date: str
+    added_date: datetime
+    updated_date: Union[datetime, None]
 
 class UpdateMedicalLicense(BaseModel):
     document_employee_id: int = None
@@ -425,7 +424,7 @@ class UpdateMedicalLicense(BaseModel):
     since: str = None
     until: str = None
     days: int = None
-    updated_date: str = None
+    updated_date: Union[datetime, None]
 
 class Rol(BaseModel):
     rol: str

@@ -8,7 +8,7 @@ class MedicalLicenseTypeClass:
         try:
             data = self.db.query(MedicalLicenseTypeModel).order_by(MedicalLicenseTypeModel.id).all()
             if not data:
-                return "No hay registros"
+                return "No data found"
             return data
         except Exception as e:
             error_message = str(e)
@@ -27,7 +27,7 @@ class MedicalLicenseTypeClass:
             data = MedicalLicenseTypeModel(**MedicalLicenseType_inputs)
             self.db.add(data)
             self.db.commit()
-            return "Registro agregado"
+            return 1
         except Exception as e:
             error_message = str(e)
             return f"Error: {error_message}"
@@ -38,9 +38,9 @@ class MedicalLicenseTypeClass:
             if data:
                 self.db.delete(data)
                 self.db.commit()
-                return "Registro eliminado"
+                return 1
             else:
-                return "No se encontró el registro"
+                return "No data found"
         except Exception as e:
             error_message = str(e)
             return f"Error: {error_message}"
@@ -49,7 +49,7 @@ class MedicalLicenseTypeClass:
         existing_medical_license_type = self.db.query(MedicalLicenseTypeModel).filter(MedicalLicenseTypeModel.id == id).one_or_none()
 
         if not existing_medical_license_type:
-            return "No se encontró el registro"
+            return "No data found"
 
         existing_medical_license_type_data = medical_license_type.dict(exclude_unset=True)
         for key, value in existing_medical_license_type_data.items():
@@ -57,4 +57,4 @@ class MedicalLicenseTypeClass:
 
         self.db.commit()
 
-        return "Registro actualizado"
+        return 1
