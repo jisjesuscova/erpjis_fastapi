@@ -1,58 +1,42 @@
 from fastapi import APIRouter, Depends
 from app.backend.db.database import get_db
 from sqlalchemy.orm import Session
-from app.backend.db.models import AccountTypeModel
-from app.backend.schemas import AccountType, UpdateAccountType
+from app.backend.schemas import AccountType, UpdateAccountType, UserLogin
+from app.backend.classes.account_type_class import AccountTypeClass
+from app.backend.auth.auth_user import get_current_active_user
 
 account_types = APIRouter(
     prefix="/account_types",
-    tags=["Account_Types"]
+    tags=["AccountType"]
 )
 
 @account_types.get("/")
-def index(db: Session = Depends(get_db)):
-    data = db.query(AccountTypeModel).all()
+def index(session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
+    data = AccountTypeClass(db).get_all()
 
     return {"message": data}
 
 @account_types.post("/store")
-def store(account_type:AccountType, db: Session = Depends(get_db)):
-    account_type_inputs = account_type.dict()
-    data = AccountTypeModel(**account_type_inputs)
-
-    db.add(data)
-    db.commit()
+def store(bank:AccountType, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
+    bank_inputs = bank.dict()
+    data = AccountTypeClass(db).store(bank_inputs)
 
     return {"message": data}
 
 @account_types.get("/edit/{id}")
-def edit(id:int, db: Session = Depends(get_db)):
-    data = db.query(AccountTypeModel).filter(AccountTypeModel.id == id).first()
+def edit(id:int, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
+    data = AccountTypeClass(db).get("id", id)
 
     return {"message": data}
 
 @account_types.delete("/delete/{id}")
-def delete(id:int, db: Session = Depends(get_db)):
-    data = db.query(AccountTypeModel).filter(AccountTypeModel.id == id)
+def delete(id:int, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
+    data = AccountTypeClass(db).delete(id)
 
-    if not data.first():
-        return {"message": "Banco no encontrado!"}
-    
-    data.delete(synchronize_session=False)
-
-    db.commit()
-
-    return {"message": "Banco eliminado!"}
+    return {"message": data}
 
 @account_types.patch("/update/{id}")
-def store(id:int, account_type:UpdateAccountType, db: Session = Depends(get_db)):
-    data = db.query(AccountTypeModel).filter(AccountTypeModel.id == id)
-
-    if not data.first():
-        return {"message": "Banco no encontrado!"}
-    
-    data.update(account_type.dict(exclude_unset=True))
-
-    db.commit()
+def update(id: int, bank: UpdateAccountType, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
+    data = AccountTypeClass(db).update(id, bank)
 
     return {"message": data}
