@@ -216,3 +216,11 @@ class EmployeeClass:
         ]
     
         return totals
+    
+    def validate_cellphone(self, cellphone):
+        existence = self.db.query(EmployeeModel).filter(EmployeeModel.cellphone == cellphone).count()
+
+        if existence == 1:
+            return 1
+        else:
+            return 0

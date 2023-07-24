@@ -63,3 +63,9 @@ def update(id: int, employee: UpdateEmployee, session_user: UserLogin = Depends(
     data = EmployeeClass(db).update(id, employee_inputs)
 
     return {"message": data}
+
+@employees.get("/validate_cellphone/{cellphone}")
+def validate(cellphone: int, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
+    data = EmployeeClass(db).validate_cellphone(cellphone)
+
+    return {"message": data}

@@ -186,29 +186,6 @@ class UpdateUniform(BaseModel):
 
 class EmployeeLaborDatum(BaseModel):
     rut: str
-    contract_type_id: int
-    branch_office_id: int
-    address: str
-    region_id: int
-    commune_id: int
-    civil_state_id: int
-    health_id: int
-    pention_id: int
-    job_position_id: int
-    extreme_zone_id: int
-    employee_type_id: int
-    regime_id: int
-    status_id: int
-    health_payment_id: int
-    entrance_pention: str
-    entrance_company: str
-    entrance_health: str
-    salary: int
-    collation: int
-    locomotion: int
-    extra_health_amount: str
-    apv_payment_type_id: int
-    apv_amount: str
     added_date: datetime
     updated_date: Union[datetime, None]
 
@@ -240,23 +217,8 @@ class UpdateEmployeeLaborDatum(BaseModel):
     updated_date: Union[datetime, None]
 
 class EmployeeExtra(BaseModel):
-    id: int
     rut: int
-    visual_rut: str
-    extreme_zone_id: int
-    employee_type_id: int
-    young_job_status_id: int
-    be_paid_id: int
-    suplemental_health_insurance_id: int
-    pensioner_id: int
-    disability_id: int
-    suplemental_health_insurance_id: int
-    progressive_vacation_level_id: int
-    recognized_years: int
-    progressive_vacation_status_id: int
-    progressive_vacation_date: str
-    added_date: str
-    updated_date: str
+    updated_date: Union[datetime, None]
 
 class UpdateEmployeeExtra(BaseModel):
     extreme_zone_id: int = None
@@ -271,7 +233,7 @@ class UpdateEmployeeExtra(BaseModel):
     recognized_years: int = None
     progressive_vacation_status_id: int = None
     progressive_vacation_date: str = None
-    updated_date: str = None
+    updated_date: Union[datetime, None]
 
 class AlertType(BaseModel):
     id: int
