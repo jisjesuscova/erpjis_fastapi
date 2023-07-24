@@ -467,14 +467,13 @@ class UpdateNew(BaseModel):
     updated_date: str = None
 
 class Principal(BaseModel):
-    id: int
     principal: str
-    added_date: str
-    updated_date: str
+    added_date: datetime
+    updated_date: Union[datetime, None]
 
 class UpdatePrincipal(BaseModel):
     principal: str = None
-    updated_date: str = None
+    updated_date: Union[datetime, None]
 
 class Commune(BaseModel):
     region_id: int
@@ -503,14 +502,13 @@ class UpdateHealth(BaseModel):
     updated_date: Union[datetime, None]
 
 class EmployeeBankAccount(BaseModel):
-    id: int
     bank_id: int
     account_type_id: int
     status_id: int
     rut: int
     account_number: str
-    added_date: str
-    updated_date: str
+    added_date: datetime
+    updated_date: Union[datetime, None]
 
 class UpdateEmployeeBankAccount(BaseModel):
     bank_id: int = None
@@ -518,7 +516,7 @@ class UpdateEmployeeBankAccount(BaseModel):
     status_id: int = None
     rut: int = None
     account_number: str = None
-    updated_date: str = None
+    updated_date: Union[datetime, None]
 
 class DocumentEmployee(BaseModel):
     id: int

@@ -3,6 +3,16 @@ from app.backend.db.models import PrincipalModel
 class PrincipalClass:
     def __init__(self, db):
         self.db = db
+
+    def get_all(self):
+        try:
+            data = self.db.query(PrincipalModel).order_by(PrincipalModel.principal).all()
+            if not data:
+                return "No data found"
+            return data
+        except Exception as e:
+            error_message = str(e)
+            return f"Error: {error_message}"
     
     def get(self, field, value):
         try:
@@ -17,7 +27,7 @@ class PrincipalClass:
             data = PrincipalModel(**principal_inputs)
             self.db.add(data)
             self.db.commit()
-            return "Registro agregado"
+            return 1
         except Exception as e:
             error_message = str(e)
             return f"Error: {error_message}"
@@ -28,9 +38,9 @@ class PrincipalClass:
             if data:
                 self.db.delete(data)
                 self.db.commit()
-                return "Registro eliminado"
+                return 1
             else:
-                return "No se encontró el registro"
+                return "No data found"
         except Exception as e:
             error_message = str(e)
             return f"Error: {error_message}"
@@ -39,7 +49,7 @@ class PrincipalClass:
         existing_principal = self.db.query(PrincipalModel).filter(PrincipalModel.id == id).one_or_none()
 
         if not existing_principal:
-            return "No se encontró el registro"
+            return "No data found"
 
         existing_principal_data = principal.dict(exclude_unset=True)
         for key, value in existing_principal_data.items():
@@ -47,4 +57,4 @@ class PrincipalClass:
 
         self.db.commit()
 
-        return "Registro actualizado"
+        return 1
