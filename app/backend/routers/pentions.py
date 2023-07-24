@@ -30,7 +30,7 @@ def edit(id:int, session_user: UserLogin = Depends(get_current_active_user), db:
     return {"message": data}
 
 @pentions.delete("/delete/{id}")
-def delete(id:int, db: Session = Depends(get_db)):
+def delete(id:int, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
     data = PentionClass(db).delete(id)
 
     return {"message": data}

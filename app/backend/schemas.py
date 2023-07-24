@@ -149,6 +149,10 @@ class UserLogin(BaseModel):
     hashed_password: Union[str, None]
     disabled: Union[int, None]
 
+class RecoverUser(BaseModel):
+    rut: str
+    email: str
+
 class User(BaseModel):
     rol_id: int
     clock_rol_id: int
@@ -245,7 +249,6 @@ class UpdateAlertType(BaseModel):
     updated_date: Union[datetime, None]
 
 class Honorary(BaseModel):
-    id: int
     reason_id: int
     branch_office_id: int
     foreigner_id: int

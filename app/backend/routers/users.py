@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from app.backend.db.database import get_db
 from sqlalchemy.orm import Session
-from app.backend.schemas import User, UpdateUser, UserLogin
+from app.backend.schemas import User, UpdateUser, UserLogin, RecoverUser
 from app.backend.classes.user_class import UserClass
 from app.backend.auth.auth_user import get_current_active_user
 
@@ -39,5 +39,12 @@ def delete(id:int, session_user: UserLogin = Depends(get_current_active_user), d
 def update(id: int, user: UpdateUser, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
     user_inputs = user.dict()
     data = UserClass(db).update(id, user_inputs)
+
+    return {"message": data}
+
+@users.post("/recover")
+def recover(user:RecoverUser, session_user: UserLogin = Depends(get_current_active_user), db: Session = Depends(get_db)):
+    user_inputs = user.dict()
+    data = UserClass(db).recover(user_inputs)
 
     return {"message": data}

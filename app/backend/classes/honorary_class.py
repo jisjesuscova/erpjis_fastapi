@@ -8,7 +8,7 @@ class HonoraryClass:
         try:
             data = self.db.query(HonoraryModel).order_by(HonoraryModel.id).all()
             if not data:
-                return "No hay registros"
+                return "No data found"
             return data
         except Exception as e:
             error_message = str(e)
@@ -27,7 +27,7 @@ class HonoraryClass:
             data = HonoraryModel(**Honorary_inputs)
             self.db.add(data)
             self.db.commit()
-            return "Registro agregado"
+            return 1
         except Exception as e:
             error_message = str(e)
             return f"Error: {error_message}"
@@ -38,9 +38,9 @@ class HonoraryClass:
             if data:
                 self.db.delete(data)
                 self.db.commit()
-                return "Registro eliminado"
+                return 1
             else:
-                return "No se encontró el registro"
+                return "No data found"
         except Exception as e:
             error_message = str(e)
             return f"Error: {error_message}"
@@ -49,7 +49,7 @@ class HonoraryClass:
         existing_honorary = self.db.query(HonoraryModel).filter(HonoraryModel.id == id).one_or_none()
 
         if not existing_honorary:
-            return "No se encontró el registro"
+            return "No data found"
 
         existing_honorary_data = Honorary.dict(exclude_unset=True)
         for key, value in existing_honorary_data.items():
@@ -57,4 +57,4 @@ class HonoraryClass:
 
         self.db.commit()
 
-        return "Registro actualizado"
+        return 1
