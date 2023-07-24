@@ -236,14 +236,13 @@ class UpdateEmployeeExtra(BaseModel):
     updated_date: Union[datetime, None]
 
 class AlertType(BaseModel):
-    id: int
     alert_type: str
-    added_date: str
-    updated_date: str
+    added_date: datetime
+    updated_date: Union[datetime, None]
 
 class UpdateAlertType(BaseModel):
     alert_type: str = None
-    updated_date: str = None
+    updated_date: Union[datetime, None]
 
 class Honorary(BaseModel):
     id: int
@@ -267,8 +266,8 @@ class Honorary(BaseModel):
     end_date: str
     amount: int
     observation: str
-    added_date: str
-    updated_date: str
+    added_date: datetime
+    updated_date: Union[datetime, None]
 
 class UpdateHonorary(BaseModel):
     reason_id: int = None
@@ -291,7 +290,7 @@ class UpdateHonorary(BaseModel):
     end_date: str = None
     amount: int = None
     observation: str = None
-    updated_date: str = None
+    updated_date: Union[datetime, None]
 
 class UniformType(BaseModel):
     uniform_type: str
