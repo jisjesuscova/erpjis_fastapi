@@ -8,7 +8,7 @@ class JobPositionClass:
         try:
             data = self.db.query(JobPositionModel).order_by(JobPositionModel.id).all()
             if not data:
-                return "No hay registros"
+                return "No data found"
             return data
         except Exception as e:
             error_message = str(e)
@@ -22,12 +22,12 @@ class JobPositionClass:
             error_message = str(e)
             return f"Error: {error_message}"
     
-    def store(self, JobPosition_inputs):
+    def store(self, jobPosition_inputs):
         try:
-            data = JobPositionModel(**JobPosition_inputs)
+            data = JobPositionModel(**jobPosition_inputs)
             self.db.add(data)
             self.db.commit()
-            return "Registro agregado"
+            return 1
         except Exception as e:
             error_message = str(e)
             return f"Error: {error_message}"
@@ -38,23 +38,23 @@ class JobPositionClass:
             if data:
                 self.db.delete(data)
                 self.db.commit()
-                return "Registro eliminado"
+                return 1
             else:
-                return "No se encontró el registro"
+                return "No data found"
         except Exception as e:
             error_message = str(e)
             return f"Error: {error_message}"
         
-    def update(self, id, JobPosition):
+    def update(self, id, jobPosition):
         existing_job_position = self.db.query(JobPositionModel).filter(JobPositionModel.id == id).one_or_none()
 
         if not existing_job_position:
-            return "No se encontró el registro"
+            return "No data found"
 
-        existing_job_position_type_data = JobPosition.dict(exclude_unset=True)
+        existing_job_position_type_data = jobPosition.dict(exclude_unset=True)
         for key, value in existing_job_position_type_data.items():
             setattr(existing_job_position, key, value)
 
         self.db.commit()
 
-        return "Registro actualizado"
+        return 1

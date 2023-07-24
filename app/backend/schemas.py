@@ -302,16 +302,15 @@ class UpdateUniformType(BaseModel):
     updated_date: Union[datetime, None]
 
 class JobPosition(BaseModel):
-    id: int
     job_position: str
     functions: str
-    added_date: str
-    updated_date: str
+    added_date: datetime
+    updated_date: Union[datetime, None]
 
 class UpdateJobPosition(BaseModel):
     job_position: str = None
     functions: str = None
-    updated_date: str = None
+    updated_date: Union[datetime, None]
 
 class PatologyType(BaseModel):
     patology_type: str
