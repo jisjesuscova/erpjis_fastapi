@@ -36,6 +36,9 @@ from app.backend.routers.contract_types import contract_types
 from app.backend.routers.medical_license_types import medical_license_types
 from app.backend.auth.login_users import login_users
 from app.backend.routers.clock_users import clock_users
+from app.backend.routers.budgets import budgets
+from app.backend.routers.collections import collections
+from app.backend.routers.dtes import dtes
 
 app = FastAPI()
 
@@ -77,6 +80,9 @@ app.include_router(contract_types)
 app.include_router(medical_license_types)
 app.include_router(login_users)
 app.include_router(clock_users)
+app.include_router(budgets)
+app.include_router(collections)
+app.include_router(dtes)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", port=8000, reload=True)

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from app.backend.db.database import get_db
+from app.backend.db.database import get_db, get_db_two
 from sqlalchemy.orm import Session
 from app.backend.schemas import Bank, UpdateBank, UserLogin
 from app.backend.classes.bank_class import BankClass

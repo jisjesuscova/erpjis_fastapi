@@ -374,7 +374,6 @@ class UpdateFamilyCoreDatum(BaseModel):
     rut_user: int = None
     gender_id: int = None
     rut: str = None
-    rut_user: int = None
     names: str = None
     father_lastname: str = None
     mother_lastname: str = None
@@ -391,8 +390,9 @@ class Vacation(BaseModel):
     no_valid_days: int
     status_id: int
     document_type_id: int
-    added_date: str
-    updated_date: str
+    support: UploadFile = None
+    added_date: datetime
+    updated_date: Union[datetime, None]
 
 class UpdateVacation(BaseModel):
     document_employee_id: int = None
@@ -401,8 +401,8 @@ class UpdateVacation(BaseModel):
     until: str = None
     days: int = None
     no_valid_days: int = None
-    support: str = None
-    updated_date: str = None
+    support: UploadFile = None
+    updated_date: str = Union[datetime, None]
 
 class MedicalLicense(BaseModel):
     document_employee_id: int
@@ -592,3 +592,18 @@ class MedicalLicenseType(BaseModel):
 class UpdateMedicalLicenseType(BaseModel):
     medical_license_type: str = None
     updated_date: Union[datetime, None]
+
+class GetBudget(BaseModel):
+    rut: str = None
+    rol_id: int = None
+    api_token: str = None
+
+class GetCollection(BaseModel):
+    rut: str = None
+    rol_id: int = None
+    api_token: str = None
+
+class GetDte(BaseModel):
+    rut: str = None
+    rol_id: int = None
+    api_token: str = None

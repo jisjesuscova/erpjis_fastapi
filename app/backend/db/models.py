@@ -1,7 +1,7 @@
-from app.backend.db.database import Base
+from app.backend.db.database import Base_one, Base_two
 from sqlalchemy import Column, Integer, String, DateTime, Date, ForeignKey, Float, Boolean, Text
 
-class BranchOfficeModel(Base):
+class BranchOfficeModel(Base_one):
     __tablename__ = 'branch_offices'
 
     id = Column(Integer, primary_key=True)
@@ -19,7 +19,7 @@ class BranchOfficeModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class GenderModel(Base):
+class GenderModel(Base_one):
     __tablename__ = 'genders'
 
     id = Column(Integer, primary_key=True)
@@ -27,7 +27,7 @@ class GenderModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class NationalityModel(Base):
+class NationalityModel(Base_one):
     __tablename__ = 'nationalities'
 
     id = Column(Integer, primary_key=True)
@@ -36,7 +36,7 @@ class NationalityModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class PentionModel(Base):
+class PentionModel(Base_one):
     __tablename__ = 'pentions'
 
     id = Column(Integer, primary_key=True)
@@ -48,7 +48,7 @@ class PentionModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class BankModel(Base):
+class BankModel(Base_one):
     __tablename__ = 'banks'
 
     id = Column(Integer, primary_key=True)
@@ -57,7 +57,7 @@ class BankModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class AccountTypeModel(Base):
+class AccountTypeModel(Base_one):
     __tablename__ = 'account_types'
 
     id = Column(Integer, primary_key=True)
@@ -65,7 +65,7 @@ class AccountTypeModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class SupervisorModel(Base):
+class SupervisorModel(Base_one):
     __tablename__ = 'supervisors'
 
     id = Column(Integer, primary_key=True)
@@ -74,7 +74,7 @@ class SupervisorModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class NewModel(Base):
+class NewModel(Base_one):
     __tablename__ = 'news'
 
     id = Column(Integer, primary_key=True)
@@ -85,7 +85,7 @@ class NewModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class RegionModel(Base):
+class RegionModel(Base_one):
     __tablename__ = 'regions'
 
     id = Column(Integer, primary_key=True)
@@ -94,7 +94,7 @@ class RegionModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class TotalVacationDaysModel(Base):
+class TotalVacationDaysModel(Base_one):
     __tablename__ = 'total_vacation_days'
 
     id = Column(Integer, primary_key=True)
@@ -102,7 +102,7 @@ class TotalVacationDaysModel(Base):
     total_no_valid_days = Column(Integer)
     total_employee_vacation_days = Column(Integer)
 
-class EmployeeModel(Base):
+class EmployeeModel(Base_one):
     __tablename__ = 'employees'
 
     id = Column(Integer, primary_key=True)
@@ -121,7 +121,7 @@ class EmployeeModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class UserModel(Base):
+class UserModel(Base_one):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
@@ -136,7 +136,7 @@ class UserModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class ContractTypeModel(Base):
+class ContractTypeModel(Base_one):
     __tablename__ = 'contract_type'
 
     id = Column(Integer, primary_key=True)
@@ -144,7 +144,7 @@ class ContractTypeModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class CivilStateModel(Base):
+class CivilStateModel(Base_one):
     __tablename__ = 'civil_states'
 
     id = Column(Integer, primary_key=True)
@@ -152,7 +152,7 @@ class CivilStateModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class UniformModel(Base):
+class UniformModel(Base_one):
     __tablename__ = 'uniforms'
 
     id = Column(Integer, primary_key=True)
@@ -162,7 +162,7 @@ class UniformModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class EmployeeTypeModel(Base):
+class EmployeeTypeModel(Base_one):
     __tablename__ = 'employee_types'
 
     id = Column(Integer, primary_key=True)
@@ -170,7 +170,7 @@ class EmployeeTypeModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class EmployeeLaborDatumModel(Base):
+class EmployeeLaborDatumModel(Base_one):
     __tablename__ = 'employee_labor_data'
 
     id = Column(Integer, primary_key=True)
@@ -203,7 +203,7 @@ class EmployeeLaborDatumModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class EmployeeExtraModel(Base):
+class EmployeeExtraModel(Base_one):
     __tablename__ = 'employee_extras'
 
     id = Column(Integer, primary_key=True)
@@ -224,7 +224,7 @@ class EmployeeExtraModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class RegimeModel(Base):
+class RegimeModel(Base_one):
     __tablename__ = 'regimes'
 
     id = Column(Integer, primary_key=True)
@@ -232,7 +232,7 @@ class RegimeModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class EmployeeViewModel(Base):
+class EmployeeViewModel(Base_one):
     __tablename__ = 'employee_details'
     __table_args__ = {'info': {'is_view': True}}  # Indica que es una vista
 
@@ -291,7 +291,7 @@ class EmployeeViewModel(Base):
     progressive_vacation_date = Column(Date())
     progressive_vacation_level_id = Column(Integer)
 
-class AlertTypeModel(Base):
+class AlertTypeModel(Base_one):
     __tablename__ = 'alert_types'
 
     id = Column(Integer, primary_key=True)
@@ -299,7 +299,7 @@ class AlertTypeModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class HonoraryModel(Base):
+class HonoraryModel(Base_one):
     __tablename__ = 'honoraries'
 
     id = Column(Integer, primary_key=True)
@@ -326,7 +326,7 @@ class HonoraryModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class UniformTypeModel(Base):
+class UniformTypeModel(Base_one):
     __tablename__ = 'uniform_types'
 
     id = Column(Integer, primary_key=True)
@@ -334,7 +334,7 @@ class UniformTypeModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class SegmentModel(Base):
+class SegmentModel(Base_one):
     __tablename__ = 'segments'
 
     id = Column(Integer, primary_key=True)
@@ -342,7 +342,7 @@ class SegmentModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class JobPositionModel(Base):
+class JobPositionModel(Base_one):
     __tablename__ = 'job_positions'
 
     id = Column(Integer, primary_key=True)
@@ -351,7 +351,7 @@ class JobPositionModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class PatologyTypeModel(Base):
+class PatologyTypeModel(Base_one):
     __tablename__ = 'patology_types'
 
     id = Column(Integer, primary_key=True)
@@ -359,7 +359,7 @@ class PatologyTypeModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class DocumentTypeModel(Base):
+class DocumentTypeModel(Base_one):
     __tablename__ = 'document_types'
 
     id = Column(Integer, primary_key=True)
@@ -369,14 +369,14 @@ class DocumentTypeModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class FamilyTypeModel(Base):
+class FamilyTypeModel(Base_one):
     __tablename__ = 'family_types'
 
     id = Column(Integer, primary_key=True)
     family_type = Column(String(255))
     added_date = Column(DateTime())
 
-class FamilyCoreDatumModel(Base):
+class FamilyCoreDatumModel(Base_one):
     __tablename__ = 'family_core_data'
 
     id = Column(Integer, primary_key=True)
@@ -391,7 +391,7 @@ class FamilyCoreDatumModel(Base):
     support = Column(Text)
     added_date = Column(DateTime())
 
-class VacationModel(Base):
+class VacationModel(Base_one):
     __tablename__ = 'vacations'
 
     id = Column(Integer, primary_key=True)
@@ -405,7 +405,7 @@ class VacationModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class MedicalLicenseModel(Base):
+class MedicalLicenseModel(Base_one):
     __tablename__ = 'medical_licenses'
 
     id = Column(Integer, primary_key=True)
@@ -421,7 +421,7 @@ class MedicalLicenseModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class RolModel(Base):
+class RolModel(Base_one):
     __tablename__ = 'rols'
 
     id = Column(Integer, primary_key=True)
@@ -429,7 +429,7 @@ class RolModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class PrincipalModel(Base):
+class PrincipalModel(Base_one):
     __tablename__ = 'principals'
 
     id = Column(Integer, primary_key=True)
@@ -437,7 +437,7 @@ class PrincipalModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class SettingModel(Base):
+class SettingModel(Base_one):
     __tablename__ = 'settings'
 
     id = Column(Integer, primary_key=True)
@@ -446,7 +446,7 @@ class SettingModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class CommuneModel(Base):
+class CommuneModel(Base_one):
     __tablename__ = 'communes'
 
     id = Column(Integer, primary_key=True)
@@ -455,7 +455,7 @@ class CommuneModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class HealthModel(Base):
+class HealthModel(Base_one):
     __tablename__ = 'healths'
 
     id = Column(Integer, primary_key=True)
@@ -466,7 +466,7 @@ class HealthModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class EmployeeBankAccountModel(Base):
+class EmployeeBankAccountModel(Base_one):
     __tablename__ = 'employees_bank_accounts'
 
     id = Column(Integer, primary_key=True)
@@ -478,7 +478,7 @@ class EmployeeBankAccountModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class DocumentEmployeeModel(Base):
+class DocumentEmployeeModel(Base_one):
     __tablename__ = 'documents_employees'
 
     id = Column(Integer, primary_key=True)
@@ -490,7 +490,7 @@ class DocumentEmployeeModel(Base):
     added_date =  Column(DateTime())
     updated_date = Column(DateTime())
 
-class OldEmployeeModel(Base):
+class OldEmployeeModel(Base_one):
     __tablename__ = 'old_employees'
 
     id = Column(Integer, primary_key=True)
@@ -511,7 +511,7 @@ class OldEmployeeModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class OldEmployeeLaborDatumModel(Base):
+class OldEmployeeLaborDatumModel(Base_one):
     __tablename__ = 'old_employee_labor_data'
 
     id = Column(Integer, primary_key=True)
@@ -545,7 +545,7 @@ class OldEmployeeLaborDatumModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class ClockUserModel(Base):
+class ClockUserModel(Base_one):
     __tablename__ = 'clock_users'
 
     id = Column(Integer, primary_key=True)
@@ -556,7 +556,7 @@ class ClockUserModel(Base):
     added_date = Column(DateTime())
     updated_date = Column(DateTime())
 
-class MedicalLicenseTypeModel(Base):
+class MedicalLicenseTypeModel(Base_one):
     __tablename__ = 'medical_license_types'
 
     id = Column(Integer, primary_key=True)
